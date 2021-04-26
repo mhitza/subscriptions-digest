@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+use SubscriptionDigest\Command\RunCommand;
+use SubscriptionDigest\Twig\TwigExtension;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Twig\Environment;
+use Twig\Extra\CssInliner\CssInlinerExtension;
+use Twig\Loader\FilesystemLoader;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$twig = new Environment(new FilesystemLoader(__DIR__));
+$twig->addExtension(new TwigExtension());
+$twig->addExtension(new CssInlinerExtension());
+
+$mailer = new Mailer(Transport::fromDsn(getenv('MAILER_DSN')));
+
+$application = new Application();
+$application->add(new RunCommand(__DIR__, $twig, $mailer));
+$application->run();
+
+/**
+Copyright (C) 2021  Marius Ghita
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */

@@ -1,0 +1,15 @@
+subscriptions:
+  # A direct link to the atom/rss feed
+  - https://example.com/feed
+
+  # An expanded subscription entry
+  - url: https://example.com/feed
+    # Disable feed entries summary from being rendered.
+    # While having the entire description rendered for a feed is the preferred format when using a reader,
+    # for email digests I prefer a short summary at most. With 'none' the summary/description is dropped.
+    summary: none
+    # Remove the feed title for a group of entries
+    # Entries from the same source are grouped together and the section is prefixed with the feed title.
+    # For some products I follow the product name is in almost in post titles (or it's too verbose) and dropping that
+    # title makes the section less cluttered.
+    group_title: none

@@ -1,0 +1,37 @@
+{
+    "name": "mhitza/subscriptions-digest",
+    "description": "",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Marius Ghita",
+            "email": "ghita.v.marius@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SubscriptionDigest\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.3",
+        "guzzlehttp/guzzle": "^7.3",
+        "symfony/yaml": "^5.2",
+        "ext-dom": "*",
+        "twig/twig": "^3.0",
+        "ext-json": "*",
+        "symfony/console": "^5.2",
+        "symfony/mailer": "^5.2",
+        "symfony/amazon-mailer": "^5.2",
+        "symfony/google-mailer": "^5.2",
+        "symfony/mailchimp-mailer": "^5.2",
+        "symfony/mailgun-mailer": "^5.2",
+        "symfony/postmark-mailer": "^5.2",
+        "symfony/sendgrid-mailer": "^5.2",
+        "twig/cssinliner-extra": "^3.3"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.85"
+    }
+}

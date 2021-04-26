@@ -1,0 +1,36 @@
+name: Scheduled Digest
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+
+jobs:
+  scheduled-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - run: composer install --no-progress --no-dev
+
+      - run: ./subscriptions-digest run --github --email
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN:      ${{ secrets.GITHUB_TOKEN }}
+
+          CONFIG_FILE:       ${{ secrets.CONFIG_FILE }}
+          MAILER_DSN:        ${{ secrets.MAILER_DSN }}
+          MAILER_SENDER:     ${{ secrets.MAILER_SENDER }}
+          MAILER_RECIPIENTS: ${{ secrets.MAILER_RECIPIENTS }}

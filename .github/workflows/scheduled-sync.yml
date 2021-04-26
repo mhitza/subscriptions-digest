@@ -1,0 +1,15 @@
+name: Scheduled Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * FRI'
+
+jobs:
+  scheduled-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tgymnich/fork-sync@v1.4
+        with:
+          base: master
+          head: master
