@@ -111,7 +111,7 @@ class RunCommand extends Command
 
             assert(false === is_null($dom->documentElement));
 
-            if ($dom->documentElement->tagName === "subscription") {
+            if ($dom->documentElement->tagName === "feed") {
                 $feedData['title'] = $this->getNodeValue($dom->getElementsByTagName('title'), 0);
                 $updatedAt = new DateTime($this->getNodeValue($dom->getElementsByTagName('updated'), 0));
 
