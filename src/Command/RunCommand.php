@@ -121,7 +121,7 @@ class RunCommand extends Command
 
                 /** @var DOMElement $entry */
                 foreach ($dom->getElementsByTagName('entry') as $entry) {
-                    $entryPublishedAt = new DateTime($this->getNodeValue($dom->getElementsByTagName('updated'), 0));
+                    $entryPublishedAt = new DateTime($this->getNodeValue($entry->getElementsByTagName('updated'), 0));
 
                     if ($lastRun !== null && $lastRun > $entryPublishedAt) {
                         continue;
