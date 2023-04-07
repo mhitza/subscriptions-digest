@@ -16,10 +16,10 @@
     },
     "require": {
         "php": ">=7.3",
-        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/guzzle": "~7.3",
         "symfony/yaml": "^5.2",
         "ext-dom": "*",
-        "twig/twig": "^3.0",
+        "twig/twig": "~3.3",
         "ext-json": "*",
         "symfony/console": "^5.2",
         "symfony/mailer": "^5.2",
@@ -32,6 +32,7 @@
         "twig/cssinliner-extra": "^3.3"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "phpstan/phpstan": "^0.12.85"
     }
 }
